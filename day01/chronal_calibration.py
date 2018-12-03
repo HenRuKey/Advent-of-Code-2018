@@ -1,5 +1,8 @@
 import sys
 from itertools import cycle
+# Import PuzzleReader to get the contents of the puzzle input file.
+sys.path.append('../')
+from puzzle_reader import PuzzleReader
 
 class Calibrator():
     """A class to read-in and store frequency changes.
@@ -9,21 +12,7 @@ class Calibrator():
     """
 
     def __init__(self, puzzle_filepath):
-        self.freq_changes = self.read_freq_changes(puzzle_filepath)
-
-    def read_freq_changes(self, puzzle_filepath):
-        """Reads all frequency changes from a .txt file and converts them to integers.
-
-        Args:
-            puzzle_filepath (str): The filepath of the puzzle input.
-        
-        Returns:
-            list of int: The frequency changes as integers.
-        """
-        freq_changes = []
-        with open(puzzle_filepath) as f:
-            freq_changes = f.readlines()
-        return [int(x) for x in freq_changes]
+        self.freq_changes = [int(x) for x in PuzzleReader.read_as_list(puzzle_filepath)]
 
     @property
     def ResultingFrequency(self):
